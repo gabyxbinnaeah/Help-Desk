@@ -1,4 +1,4 @@
-from werkzeug.security import genarate_password_hash,check_password_hash
+from werkzeug.security import generate_password_hash,check_password_hash
 from . import db
 from flask_login import UserMixin
 from . import login_manager
@@ -40,13 +40,14 @@ class ProblemComments(db.Model):
     id=db.Column(db.Integer, primary_key=True)
     description=db.Column(db.String())
     date_posted=db.Column(db.DateTime,default=datetime.utcnow) 
-    problem_id=db.Column(db.Integer,db.ForeignKey("problems.id"))
+    problem_id=db.Column(db.Integer,db.ForeignKey("problem.id"))
     user_id=db.Column(db.Integer,db.ForeignKey("users.id"))
 
 class User(UserMixin,db.Model):
     '''
     models that defines properties of user class
     '''
+    __tablename__="users"
     id=db.Column(db.Integer, primary_key=True)
     username=db.Column(db.String(255))
     email=db.Column(db.String(),unique = True,index = True) 
@@ -71,9 +72,3 @@ class User(UserMixin,db.Model):
     
     def __repr__(self):
         return f'User {self.username}'
-
-class Roles(db.Model):
-    '''
-    class that defines the properties of roles object
-    '''
-
