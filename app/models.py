@@ -36,4 +36,44 @@ class ProblemComments(db.Model):
     '''
     model that defines properties of problemcomment objects
     '''
+    __tablename__="comments"
+    id=db.Column(db.Integer, primary_key=True)
+    description=db.Column(db.String())
+    date_posted=db.Column(db.DateTime,default=datetime.utcnow) 
+    problem_id=db.Column(db.Integer,db.ForeignKey("problems.id"))
+    user_id=db.Column(db.Integer,db.ForeignKey("users.id"))
+
+class User(UserMixin,db.Model):
+    '''
+    models that defines properties of user class
+    '''
+    id=db.Column(db.Integer, primary_key=True)
+    username=db.Column(db.String(255))
+    email=db.Column(db.String(),unique = True,index = True) 
+    profile_pic_path = db.Column(db.String())
+    bio = db.Column(db.String(255))
+    password_hash=db.Column(db.String(255))
+    problems=db.relationship('Problem', backref ='problem',lazy= "dynamic")
+    problemcomments=db.relationship('ProblemComments',backref ='broplemcomments',lazy= "dynamic")
+
+
+    @property
+    def password(self):
+        raise AttributeError('You can not access  the password attribute')
+
+    @password.setter
+    def  password(self,password):
+        self.password_hash=generate_password_hash(password)
+
+    def verify_password(self,password):
+        return check_password_hash(self.password_hash,password)
+
     
+    def __repr__(self):
+        return f'User {self.username}'
+
+class Roles(db.Model):
+    '''
+    class that defines the properties of roles object
+    '''
+
