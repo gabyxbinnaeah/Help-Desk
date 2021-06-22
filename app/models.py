@@ -21,4 +21,19 @@ class Problem(db.Model):
     Category=db.Column(db.String(255))
     problemComment=db.Column(db.String())
     date_posted=db.Column(db.DateTime,default=datetime.utcnow)
-     
+
+
+    @classmethod
+    def get_problems(cls,id):
+        problems=Problem.query.order_by(problem_id=id).desc().all() 
+        return problems
+
+    def __repr__(self):
+        return f'Problem {self.description}'
+
+
+class ProblemComments(db.Model):
+    '''
+    model that defines properties of problemcomment objects
+    '''
+    
