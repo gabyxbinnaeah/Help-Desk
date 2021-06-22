@@ -3,7 +3,7 @@ from . import auth
 from .. import db
 from flask_login import login_user, logout_user, login_required
 from ..models import User
-from .forms import LoginForm,RegistrationForm
+from . import LoginForm,RegistrationForm
 from ..email import mail_message
 
 @auth.route('/login',methods=['GET','POST'])
@@ -30,12 +30,11 @@ def register():
         db.session.add(user)
         db.session.commit()
 
-        mail_message("Welcome to Online Help-Desk","email/welcome_user",user.email,user=user)
+        mail_message("Welcome to the Online Help-Desk","email/welcome_user",user.email,user=user)
 
         return redirect(url_for('auth.login'))
-        title = "Help-Desk"
+        title = "Help Desk"
     return render_template('auth/register.html',registration_form = form)
-
 @auth.route('/logout')
 @login_required
 def logout():

@@ -1,4 +1,4 @@
-from werkzeug.security import genarate_password_hash,check_password_hash
+from werkzeug.security import generate_password_hash,check_password_hash
 from . import db
 from flask_login import UserMixin
 from . import login_manager
@@ -71,9 +71,4 @@ class User(UserMixin,db.Model):
     
     def __repr__(self):
         return f'User {self.username}'
-
-class Roles(db.Model):
-    '''
-    class that defines the properties of roles object
-    '''
 
