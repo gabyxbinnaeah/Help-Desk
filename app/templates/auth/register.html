@@ -15,3 +15,11 @@
 </div>
 
 {% endblock%}
+
+<form role="form" action="/login/"method="post" name="login">
+    {{ login_form.csrf_token }}
+    {{ login_form.username(class_="form-control", placeholder="Username") }}
+    {{ login_form.password(class_="form-control", placeholder="Password") }}
+  
+    <input class="form-control" type="submit" placeholder="Login"></input>
+  </form>
