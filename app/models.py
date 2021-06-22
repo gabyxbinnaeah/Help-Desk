@@ -40,13 +40,14 @@ class ProblemComments(db.Model):
     id=db.Column(db.Integer, primary_key=True)
     description=db.Column(db.String())
     date_posted=db.Column(db.DateTime,default=datetime.utcnow) 
-    problem_id=db.Column(db.Integer,db.ForeignKey("problems.id"))
+    problem_id=db.Column(db.Integer,db.ForeignKey("problem.id"))
     user_id=db.Column(db.Integer,db.ForeignKey("users.id"))
 
 class User(UserMixin,db.Model):
     '''
     models that defines properties of user class
     '''
+    __tablename__="users"
     id=db.Column(db.Integer, primary_key=True)
     username=db.Column(db.String(255))
     email=db.Column(db.String(),unique = True,index = True) 

@@ -33,7 +33,7 @@ class ProdConfig(Config):
     Args: 
     Config The parent configuration class with General configuration settings
     '''
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:josie@localhost/helpDesk'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:josie@localhost/help'
     DEBUG = True
 
 class DevConfig(Config):
@@ -43,11 +43,11 @@ class DevConfig(Config):
     Args: 
     Config The parent configuration class with General configuration settings
     '''
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:josie@localhost/blogs'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:josie@localhost/help'
     DEBUG = True
 
 class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:josie@localhost/blogs'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:josie@localhost/help'
 
 
 
