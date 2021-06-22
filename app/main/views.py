@@ -7,8 +7,8 @@ from ..models import User
 
 @main.route('/',methods = ['GET'])
 def index():
-    quotes = getQuotes()
-    return render_template ('index.html',quotes = quotes)
+   
+    return render_template ('index.html')
 
 @main.route('/user/<uname>')
 def profile(uname):
