@@ -12,17 +12,17 @@ def index():
 
     return render_template('index.html', title = title, problems = problems)
 
-@main.route('/new_post/new', methods=['GET','POST'])
+@main.route('/new_problem/new', methods=['GET','POST'])
 def new_post():
     problem_form = ProblemForm()
     if problem_form.validate_on_submit():
         title = problem_form.title.data
-        desscription = problem_form.description.data
-        user_id = current_user._get_current_object().id
-        new_proble = Problem(user_id=user_id, title=title, desscription=desscription)
-    
+        category = problem_form.category.data
+        problemComment= problem_form.ProblemComment.data
+        new_problem = Problem( title=title, category=category, problemComment=problemComment)
+        
 
-        db.session.add(new_post)
+        db.session.add(new_problem)
         db.session.commit()
 
         return redirect(url_for('main.index'))

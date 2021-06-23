@@ -1,0 +1,27 @@
+
+{% extends 'bootstrap/base.html' %}
+{% block navbar %}
+{% include 'navbar.html'%}
+{%endblock%}
+
+{% block content %}
+    <header>
+        {% if title %}
+        <title>{{title}}</title>
+        {% else %}
+        <title>Bloggers Website</title>
+        {% endif %}
+    </header>   
+
+        <button class="btn btn-outline-success">
+            <a style="text-align: center; color: honeydew;" class="navbar-brand"
+            href="/new_problem/new">Click to submit an issue</a>
+          </button>
+        <div class="container">
+        {% for problem in problems %}>
+            <h1>{{problem.title}}</h1>
+            <p>{{problem.category}}</p>
+            <p>{{problem.problemComment}}</p>
+            {% endfor %}
+        </div>
+{% endblock %}

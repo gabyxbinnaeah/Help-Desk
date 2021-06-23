@@ -24,8 +24,8 @@ class Problem(db.Model):
 
 
     @classmethod
-    def get_problems(cls,id):
-        problems=Problem.query.order_by(problem_id=id).desc().all() 
+    def get_problems(cls):
+        problems=Problem.query.order_by(Problem.date_posted).all() 
         return problems
 
     
