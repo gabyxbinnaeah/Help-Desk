@@ -5,12 +5,12 @@ from ..models import Problem, ProblemComments
 from flask_login import login_required, current_user
 from ..import db
 
-@main.route('/', methods=['GEt','POST'])
+@main.route('/', methods=['GET','POST'])
 def index():
     problems = Problem.get_problems()
     title = 'student issues'
 
-    return render_template('index.html', title = title, problems = problems)
+    return render_template('student.html', title = title, problems = problems)
 
 @main.route('/new_problem/new', methods=['GET','POST'])
 def new_post():
