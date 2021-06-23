@@ -41,6 +41,7 @@ class ProblemComments(db.Model):
     __tablename__="comments"
     id=db.Column(db.Integer, primary_key=True)
     description=db.Column(db.String())
+    name=db.Column(db.String(255))
     date_posted=db.Column(db.DateTime,default=datetime.utcnow) 
     problem_id=db.Column(db.Integer,db.ForeignKey("problem.id"))
     user_id=db.Column(db.Integer,db.ForeignKey("users.id"))

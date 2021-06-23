@@ -1,3 +1,5 @@
+from re import sub
+from wtforms.widgets.core import TextArea
 from app.models import ProblemComments
 from flask_wtf import FlaskForm
 from wtforms import SelectField, SelectMultipleField, StringField,SubmitField,TextAreaField,DateField
@@ -9,3 +11,7 @@ class ProblemForm(FlaskForm):
     ProblemComment=TextAreaField("Describe ypur issue here", validators=[Required()])
     submit =SubmitField("Submit Your Issue")
     
+class CommentForm(FlaskForm):
+    name= StringField("Name", validators=[Required()])
+    description= TextAreaField('Your Comment on the issue', validators=[Required()])
+    submit= SubmitField('Comment')
