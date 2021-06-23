@@ -25,6 +25,7 @@
             <p>{{problem.category}}</p>
             <p>{{problem.problemComment}}</p>
             <h4>{{problem.date_posted.date()}}</h4>
+            <a href="{{url_for('main.new_Comment',id=problem.id)}}" class="btn btn-success">Feedback</a>
         </div>
 
             {% endfor %}

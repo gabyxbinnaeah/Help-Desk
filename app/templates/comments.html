@@ -1,3 +1,9 @@
+{% import 'bootstrap/wtf.html' as wtf %}
+{% extends 'bootstrap/base.html' %}
+{% block navbar %}
+{% include 'navbar.html'%}
+{%endblock%}
+
 {% block content%}
 
 <div class="container-fluid" style="background-color: #14213d;">
@@ -11,21 +17,17 @@
         <hr>
         <h1 class="text text-center text-success">Feedback</h1>
         
-        {% if comments %}
-        {% for comment in comments %}
+        {% if descriptions %}
+        {% for description in descriptions %}
        
         <div class="panel" style="margin-left: 20pxpx;">
-            <h3>Posted by: {{comment.name}}</h3>
-            <p style="font-family: Pangolin; font-size: large; font-weight: bold;">{{ comment.comment }}</p>
-            <p style="font-style: italic; font-size: large;">{{comment.date.date()}} at {{comment.date.time()}}</p>
-            {% if current_user.is_authenticated %}
-            <button class="btn btn-info"> <a href="{{url_for('main.deleteComment',id=comment.id)}}" style="font-size: 25px; color: honeydew;">Delete Comment</a></button>
-            {% endif %}
-        </div>
+            <h3>Hello: this is {{description.name}} from the department of {{description.department}}</h3>
+            <p style="font-family: Pangolin; font-size: large; font-weight: bold;">{{ description.description }}</p>
+            <p style="font-style: italic; font-size: large;">{{description.date_posted.date()}} at {{description.date_posted.time()}}</p>
         <hr>
         {% endfor %}
         {% else %}
-        <h3>Be the first to comment on this Blog !!</h3>
+        <h3>Please provide some feedback on the above issue</h3>
         {%endif%}
     </div>   
 </div>

@@ -42,6 +42,7 @@ class ProblemComments(db.Model):
     id=db.Column(db.Integer, primary_key=True)
     description=db.Column(db.String())
     name=db.Column(db.String(255))
+    department=db.Column(db.String())
     date_posted=db.Column(db.DateTime,default=datetime.utcnow) 
     problem_id=db.Column(db.Integer,db.ForeignKey("problem.id"))
     user_id=db.Column(db.Integer,db.ForeignKey("users.id"))

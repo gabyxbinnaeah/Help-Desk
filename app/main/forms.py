@@ -14,4 +14,5 @@ class ProblemForm(FlaskForm):
 class CommentForm(FlaskForm):
     name= StringField("Name", validators=[Required()])
     description= TextAreaField('Your Comment on the issue', validators=[Required()])
+    department=SelectField("Reply from", choices=[('Adminstration','Adminstration'),('Academic','Academic'),('Student Affairs','Student Affairs'),('Health', 'Health'),('Counselling', 'Counselling'), ('Hostel', 'Hostel'), ('Finance', 'Finance')], validators=[Required()])
     submit= SubmitField('Comment')

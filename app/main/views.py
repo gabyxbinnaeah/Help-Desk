@@ -37,10 +37,19 @@ def new_Comment(id):
     if comment_form.validate_on_submit():
         description=comment_form.description.data
         name= comment_form.name.data
-        new_comment=ProblemComments(description = description,name=name, problem_id=id)
+        department=comment_form.department.data
+        new_comment=ProblemComments(description = description,name=name,department=department, problem_id=id)
         
 
         db.session.add(new_comment)
         db.session.commit()
 
-    return render_template('comment.html', comment_form=comment_form, descriptions=descriptions, problem=problem)
+    return render_template('comments.html', comment_form=comment_form, descriptions=descriptions, problem=problem)
+
+@main.route('/delete/<int:id>', methods=['GET', 'POST'])
+def deleteComment(id):
+    comment =ProblemComments.query.get_or_404(id)
+    db.session.delete(comment)
+    db.session.commit()
+    
+    return redirect (url_for('main.new_Comment', id=id)) 
