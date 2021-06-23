@@ -2,8 +2,8 @@ from flask import render_template,redirect,url_for, flash,request
 from . import auth
 from .. import db
 from flask_login import login_user, logout_user, login_required
-from ..models import User
-from .forms import LoginForm,RegistrationForm
+from ..models import User,Admin
+from .forms import LoginForm,RegistrationForm,staffLoginForm
 from ..email import mail_message
 
 @auth.route('/login/',methods=['GET','POST'])
@@ -20,6 +20,19 @@ def login():
     title = "Help-Desk"
     return render_template('auth/login.html',login_form = login_form,title=title)
 
+@auth.route('/authlogin/',methods=['GET','POST'])
+def staffLogin():
+    staffLogin_form = staffLoginForm()
+    if staffLogin_form.validate_on_submit():
+        admin = Admin.query.filter_by(username = staffLogin_form.username.data).first()
+        if admin is not None and admin.verify_password(staffLogin_form.password.data):
+            admin_user(admin,staffLogin_form.remember.data)
+            return redirect(request.args.get('next') or url_for('main.index'))
+
+        flash('Invalid username or Password')
+
+    title = "Help-Desk"
+    return render_template('auth/stafflogin.html',staffLogin_form = staffLogin_form,title=title)
 
 
 @auth.route('/register',methods = ["GET","POST"])
@@ -35,6 +48,7 @@ def register():
         return redirect(url_for('auth.login'))
         title = "Help Desk"
     return render_template('auth/register.html',registration_form = form)
+
 @auth.route('/logout')
 @login_required
 def logout():

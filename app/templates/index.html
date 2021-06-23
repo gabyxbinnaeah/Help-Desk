@@ -1,4 +1,176 @@
 {% extends 'base.html'%}
 {% block content %}
-<h1 class="page-header"> Online Help Desk</h1>
+<style>
+    .landing {
+    background-color: #ebebeb;
+    background: url('https://www.enr.com/ext/resources/Issues/MountainSt_Issues/2016/October/24-Oct/DPS-Northfield-Exterior.jpg?t=1476804045&width=900') no-repeat fixed 100% 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+    flex-direction: column;
+    text-align: center;
+    background-position: center center;
+}
+
+#overlay {
+    top: 0;
+    bottom: 0;
+    padding: 8%;
+    font-size: 18px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+
+
+.about {
+    background-color: #ebebeb;
+    margin: 0 auto;
+    flex-direction: column;
+    text-align: center;
+    background-position: center center;
+    padding: 2%;
+}
+
+.aboutUs {
+    background-color: #023047;
+    color: white;
+    padding: 20px;
+}
+
+#imageWidth {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+
+}
+
+#imageWidth img {
+    border-radius: 50%;
+    padding-top: 5px;
+    width: 120px;
+      height: 120px;
+}
+
+.card {
+    margin: 2%;
+    color: black;
+    text-align: center;
+}
+
+.card-title {
+    margin-bottom: 0.5rem;
+    color:#219ebc;
+    /* background-color: #c5e8ef; */
+}
+
+.review {
+    padding: 3%;
+}
+.footer{
+    background-color: #023047;
+    color: white;
+}
+</style>
+
+<section class="landing" >
+    <div id="overlay">
+        <div class="d-flex align-items-center justify-content-center" style="height: 500px;">
+            <div>
+                <h1>The Online Help Desk</h1>
+                <p>Let's save on time spent making long queues in our departments just to make an inquiry that can be answered more effectively<br>
+                The Online Help Desk provides a platform where you can post all your queries and you will get immediate feedback. </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="about text-center">
+    <h2 class="aboutUs">What Students Have to Say... </h2>
+    <div class=" review container">
+        <div class=" row">
+            <div class="col-md-4 d-flex justify-content-center">
+                <div class="card" style="width: 18rem;">
+                    <div id="imageWidth">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNpIkYUP2XfxU3cB4_CEvaTi5Wngoip5ktlg&usqp=CAU"class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title">Aria Malena</h6>
+                        <p>
+                            I was able to sort my issue with the finance department seamlessly</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex justify-content-center">
+                <div class="card" style="width: 18rem;">
+                    <div id="imageWidth" class="imageWidth d-flex justify-content-center">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8ZECD36U0DsvNeiC4g0PXZ_K9KXbfM1yvqw&usqp=CAU" class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title">Kyle Shanon</h6>
+                        <p class="card-text">I find the system very helpful. I can fill in issues with various departments at the same time. 
+                           </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex justify-content-center">
+                <div class="card" style="width: 18rem;">
+                    <div id="imageWidth">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRapLmAE5AyjGhZDnmZqBSu6HgwDGGvgSgqNA&usqp=CAU" class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title">Baraka Myles</h6>
+                        <p class="card-text">
+                            Missing mark are no longer a big issue</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+</section>
+<!-- Footer start -->
+<footer class="footer">
+    <div class="container footerInfo ">
+        <div class="row ">
+            <div class="col-md-4 col1">
+                <h5>Help Desk Services</h5>
+                <p>Exam cards</p>
+                <p>Missing marks</p>
+                <p>Feees</p>
+                <p>Courses</p>
+                <p>Health</p>
+            </div>
+            <div class="col-md-4 col2">
+                <h5>Departments</h5>
+                <p>Adminstaration</p>
+                <p>Finance</p>
+                <p>Academics</p>
+                <p>Student Affairs</p>
+                <p>Health</p>
+                <p>Counselling/p>
+                <p>Hostels</p>
+
+            </div>
+            <div class="col-md-4 col3">
+                <h5>Reach out to us</h5>
+                <p>+2547 000 000</p>
+                <p>support@helpdesk.co.org</p>
+                <div id="socialIcons">
+                    <!-- <a href="https://touch.facebook.com/" class="fa fa-facebook"></a>
+                    <a href="https://twitter.com/" class="fa fa-twitter"></a>
+                    <a href="https://www.instagram.com/" class="fa fa-instagram"></a>
+                    <a href="https://twitter.com/" class="fa fa-pinterest"></a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center copyright">
+        <p>User Terms of Service | Help Desk Terms of Service | Pricing terms | Privacy policy | About us | FAQ |
+            Contact <br>© helpdesk Ltd 2021.</p>
+    </div>
+</footer>
+<!-- Footer end -->
+
 {%endblock%}
