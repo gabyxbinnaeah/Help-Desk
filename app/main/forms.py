@@ -1,5 +1,4 @@
 from flask_wtf import FlaskForm
-from flask_wtf.recaptcha import validators
 from wtforms import SelectField, SelectMultipleField, StringField,SubmitField,TextAreaField,DateField
 from wtforms.validators import Required
 

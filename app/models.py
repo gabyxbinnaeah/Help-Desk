@@ -18,7 +18,7 @@ class Problem(db.Model):
     id=db.Column(db.Integer, primary_key=True)
     user_id=db.Column(db.Integer,db.ForeignKey("users.id"))
     title=db.Column(db.String(255))
-    Category=db.Column(db.String(255))
+    category=db.Column(db.String(255))
     problemComment=db.Column(db.String())
     date_posted=db.Column(db.DateTime,default=datetime.utcnow)
 
