@@ -28,6 +28,8 @@ class Problem(db.Model):
         problems=Problem.query.order_by(problem_id=id).desc().all() 
         return problems
 
+    
+
     def __repr__(self):
         return f'Problem {self.description}'
 
