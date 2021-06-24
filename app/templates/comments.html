@@ -15,21 +15,7 @@
         </div>
         <h4 style="color: honeydew; font-size: larger; font-style: italic;">Click on comment button twice to display your comment</h4>
         <hr>
-        <h1 class="text text-center text-success">Feedback</h1>
         
-        {% if descriptions %}
-        {% for description in descriptions %}
-       
-        <div class="panel" style="margin-left: 20pxpx;">
-            <h3>Hello: this is {{description.name}} from the department of {{description.department}}</h3>
-            <p style="font-family: Pangolin; font-size: large; font-weight: bold;">{{ description.description }}</p>
-            <p style="font-style: italic; font-size: large;">{{description.date_posted.date()}} at {{description.date_posted.time()}}</p>
-            <button class="btn btn-info"> <a href="{{url_for('main.deleteComment',id=description.id)}}" style="font-size: 25px; color: honeydew;">Delete Comment</a></button>
-        <hr>
-        {% endfor %}
-        {% else %}
-        <h3>Please provide some feedback on the above issue</h3>
-        {%endif%}
-    </div>   
+        
 </div>
 {% endblock %}

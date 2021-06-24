@@ -6,7 +6,7 @@ from flask_login import login_required, current_user
 from ..import db
 
 @main.route('/', methods=['GET','POST'])
-def index():
+def student():
     problems = Problem.get_problems()
     title = 'student issues'
 
@@ -25,7 +25,7 @@ def new_post():
         db.session.add(new_problem)
         db.session.commit()
 
-        return redirect(url_for('main.index'))
+        return redirect(url_for('main.student'))
 
     return render_template('problem.html', problem_form = problem_form)
 
@@ -43,6 +43,7 @@ def new_Comment(id):
 
         db.session.add(new_comment)
         db.session.commit()
+        return redirect(url_for('main.student'))
 
     return render_template('comments.html', comment_form=comment_form, descriptions=descriptions, problem=problem)
 
