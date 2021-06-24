@@ -1,0 +1,54 @@
+
+{% extends 'bootstrap/base.html' %}
+{% block navbar %}
+{% include 'navbar.html'%}
+{%endblock%}
+
+{% block content %}
+    <style>
+        #textcenter{
+            text-align: center;
+        }
+    </style>
+    <header>
+        {% if title %}
+        <title>{{title}}</title>
+        {% else %}
+        <title>Bloggers Website</title>
+        {% endif %}
+    </header>   
+
+        
+        <div class="container" style="padding-top: 80px;">
+            <button class="btn btn-info">
+                <a style="text-align: center; color: honeydew;" class="navbar-brand"
+                href="/new_problem/new">Submit an issue</a>
+              </button>
+              <div class="row  container" style="padding-top:90px">
+                  <div class="col-md-2"></div>
+                  
+                  <div class="col-md-8" style="background-color: rgba(128, 128, 128, 0.527); padding-bottom: 20px;margin-top: 20px;">
+                    <hr>
+                    {% for problem in problems %}
+                    <div class="panel" style="padding-bottom: 20px;">
+                        <h1 class="panel-title" id="textcenter">{{problem.title}} : {{problem.admission_number}}</h1>
+                        <h1 class="panel-title" id="textcenter">{{problem.category}}</h1>
+                        <p class="panel-body" id="textcenter">{{problem.problemComment}}</p>
+                        <h4 class="panel-body" id="textcenter">{{problem.date_posted.date()}}</h4>
+                        <div class="butss" id="textcenter" style="margin-bottom: 20px;">
+                            <a href="{{url_for('main.new_Comment',id=problem.id)}}" class="btn btn-info">Feedback</a>
+                            <a href="{{url_for('main.updateProblem',id=problem.id)}}" class="btn btn-info btn-md"><span class="glyphicon glyphicon-plus"></span>UpdateProblem</a>
+                            <a href="{{url_for('main.deleteProblem',id=problem.id)}}" class="btn btn-info btn-md"><span class="glyphicon glyphicon-trash"></span> Trash</a>
+                        </div>
+                    </div>
+            
+                        {% endfor %}
+                    <hr>
+                  </div>
+                  
+                  <div class="col-md-2"></div>
+                  
+              </div>
+       
+        </div>
+{% endblock %}

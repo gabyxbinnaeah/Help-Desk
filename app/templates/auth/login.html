@@ -1,0 +1,98 @@
+{% extends 'base.html'%}
+{% import 'bootstrap/wtf.html' as wtf%}
+
+{% block content %}
+<style>
+  .gabyspace{
+    padding-top:90px;
+    padding-bottom:200px;
+  }
+  .footer{
+    background-color: #023047;
+    color: white;
+    padding-top: 200px;
+  }
+
+</style>
+<div class="container gabyspace">
+  <div class="row">
+    <div class="col-md-2"> </div>
+    <div class="col-md-8">
+      <!--Flash message -->
+      {% for message in get_flashed_messages() %}
+      <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+      </div>
+      {% endfor %}
+      <!-- Login form -->
+
+      <!-- {{login_form.csrf_token}}
+      {{login_form.username}}
+      {{login_form.password}}
+      {{login_form.submit}} -->
+
+      <form method="post">
+        {{login_form.hidden_tag()}}
+        {{login_form.username.label}} {{login_form.username(class = "form-control")}}
+        <br>
+      
+        {{login_form.password.label}} <br>{{login_form.password(id = "pass")}}
+        <br>
+        <br>
+        {{login_form.submit(class = "btn btn-info")}}
+    </form>
+
+
+
+      <!-- {{wtf.quick_form(login_form)}} -->
+      <p> Don't have an account? <a href="{{url_for('auth.register')}}">Sign up here</a></p>
+      <p>Admin<a href="{{url_for('auth.staffLogin')}} "> Login</a> or <a href="{{url_for('auth.staffregister')}}">Sign up</a></p>
+
+      <div clas="col-md-2"> </div>
+    </div>
+
+  </div>
+  </div> 
+
+
+  <!--footer begins-->
+<footer class="footer">
+  <div class="container footerInfo ">
+      <div class="row ">
+          <div class="col-md-4 col1">
+              <h5>Help Desk Services</h5>
+              <p>Exam cards</p>
+              <p>Missing marks</p>
+              <p>Feees</p>
+              <p>Courses</p>
+              <p>Health</p>
+          </div>
+          <div class="col-md-4 col2">
+              <h5>Departments</h5>
+              <p>Adminstaration</p>
+              <p>Finance</p>
+              <p>Academics</p>
+              <p>Student Affairs</p>
+              <p>Health</p>
+              <p>Counselling/p>
+              <p>Hostels</p>
+
+          </div>
+          <div class="col-md-4 col3">
+              <h5>Reach out to us</h5>
+              <p>+2547 000 000</p>
+              <p>support@helpdesk.co.org</p>
+          </div>
+      </div>
+  </div>
+  <div class="row text-center copyright">
+      <p>User Terms of Service | Help Desk Terms of Service | Pricing terms | Privacy policy | About us | FAQ |
+          Contact <br>© helpdesk Ltd 2021.</p>
+  </div>
+</footer>
+<!-- Footer end -->
+  
+
+
+  {% endblock%}

@@ -1,0 +1,3 @@
+Hello {{user.username}}
+This is the Online Help Desk
+We are ready to answer whatever queries you may have. Feel freee to post all of them. You will get feedback immmediately.
