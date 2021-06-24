@@ -17,8 +17,9 @@ class Problem(db.Model):
 
     id=db.Column(db.Integer, primary_key=True)
     user_id=db.Column(db.Integer,db.ForeignKey("users.id"))
+    admission_number=db.Column(db.String())
     title=db.Column(db.String(255))
-    Category=db.Column(db.String(255))
+    category=db.Column(db.String(255))
     problemComment=db.Column(db.String())
     date_posted=db.Column(db.DateTime,default=datetime.utcnow)
 
@@ -39,6 +40,8 @@ class ProblemComments(db.Model):
     __tablename__="comments"
     id=db.Column(db.Integer, primary_key=True)
     description=db.Column(db.String())
+    name=db.Column(db.String(255))
+    department=db.Column(db.String())
     date_posted=db.Column(db.DateTime,default=datetime.utcnow) 
     problem_id=db.Column(db.Integer,db.ForeignKey("problem.id"))
     user_id=db.Column(db.Integer,db.ForeignKey("users.id"))
@@ -56,7 +59,7 @@ class User(UserMixin,db.Model):
     password_hash=db.Column(db.String(255))
     problems=db.relationship('Problem', backref ='problem',lazy= "dynamic")
     problemcomments=db.relationship('ProblemComments',backref ='broplemcomments',lazy= "dynamic")
-    # role = db.Column(db.String(64))
+ 
 
     @property
     def password(self):
