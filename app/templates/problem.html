@@ -1,0 +1,62 @@
+
+{% import 'bootstrap/wtf.html' as wtf %}
+{% extends 'bootstrap/base.html' %}
+{% block navbar %}
+{% include 'navbar.html'%}
+{%endblock%}
+{% block content %}
+<style>
+	.footer{
+	  background-color: #023047;
+	  color: white;
+	  padding-top: 140px;
+	}
+</style>
+
+<div class="container" style="margin-top: 100px;">
+	<div class="row">
+		<div class="jumbotron">
+            {{ wtf.quick_form(problem_form)}}
+		
+		</div>
+	</div>
+</div>
+
+
+<!--footer begins-->
+<footer class="footer">
+	<div class="container footerInfo ">
+		<div class="row ">
+			<div class="col-md-4 col1">
+				<h5>Help Desk Services</h5>
+				<p>Exam cards</p>
+				<p>Missing marks</p>
+				<p>Feees</p>
+				<p>Courses</p>
+				<p>Health</p>
+			</div>
+			<div class="col-md-4 col2">
+				<h5>Departments</h5>
+				<p>Adminstaration</p>
+				<p>Finance</p>
+				<p>Academics</p>
+				<p>Student Affairs</p>
+				<p>Health</p>
+				<p>Counselling/p>
+				<p>Hostels</p>
+  
+			</div>
+			<div class="col-md-4 col3">
+				<h5>Reach out to us</h5>
+				<p>+2547 000 000</p>
+				<p>support@helpdesk.co.org</p>
+			</div>
+		</div>
+	</div>
+	<div class="row text-center copyright">
+		<p>User Terms of Service | Help Desk Terms of Service | Pricing terms | Privacy policy | About us | FAQ |
+			Contact <br>© helpdesk Ltd 2021.</p>
+	</div>
+  </footer>
+  <!-- Footer end -->
+{% endblock %}
