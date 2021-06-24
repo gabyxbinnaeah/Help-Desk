@@ -3,7 +3,7 @@ from . import auth
 from .. import db
 from flask_login import login_user, logout_user, login_required
 from ..models import User,Admin
-from .forms import LoginForm,RegistrationForm,staffLoginForm
+from .forms import LoginForm,RegistrationForm,staffLoginForm,staffRegistrationForm
 from ..email import mail_message
 
 @auth.route('/login/',methods=['GET','POST'])
@@ -26,7 +26,7 @@ def staffLogin():
     if staffLogin_form.validate_on_submit():
         admin = Admin.query.filter_by(username = staffLogin_form.username.data).first()
         if admin is not None and admin.verify_password(staffLogin_form.password.data):
-            admin_user(admin,staffLogin_form.remember.data)
+            login_user(admin,staffLogin_form.remember.data)
             return redirect(request.args.get('next') or url_for('main.index'))
 
         flash('Invalid username or Password')
@@ -37,6 +37,20 @@ def staffLogin():
 
 @auth.route('/register',methods = ["GET","POST"])
 def register():
+    form = staffRegistrationForm()
+    if form.validate_on_submit():
+        admin = Admin(email = form.email.data, username = form.username.data,password = form.password.data)
+        db.session.add(admin)
+        db.session.commit()
+
+        mail_message("Welcome to the Online Help-Desk","email/welcome_user",user.email,user=user)
+
+        return redirect(url_for('auth.login'))
+        title = "Help Desk"
+    return render_template('auth/register.html',registration_form = form)
+
+@auth.route('/staffregister',methods = ["GET","POST"])
+def staffregister():
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User(email = form.email.data, username = form.username.data,password = form.password.data)
