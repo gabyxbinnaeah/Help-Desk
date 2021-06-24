@@ -17,22 +17,19 @@ class Problem(db.Model):
 
     id=db.Column(db.Integer, primary_key=True)
     user_id=db.Column(db.Integer,db.ForeignKey("users.id"))
+    admission_number=db.Column(db.String())
     title=db.Column(db.String(255))
     category=db.Column(db.String(255))
     problemComment=db.Column(db.String())
     date_posted=db.Column(db.DateTime,default=datetime.utcnow)
-
 
     @classmethod
     def get_problems(cls):
         problems=Problem.query.order_by(Problem.date_posted).all() 
         return problems
 
-    
-
     def __repr__(self):
         return f'Problem {self.description}'
-
 
 class ProblemComments(db.Model):
     '''
@@ -47,7 +44,7 @@ class ProblemComments(db.Model):
     problem_id=db.Column(db.Integer,db.ForeignKey("problem.id"))
     user_id=db.Column(db.Integer,db.ForeignKey("users.id"))
 
-class User(UserMixin,db.Model):
+class User(UserMixin, db.Model):
     '''
     models that defines properties of user class
     '''
@@ -76,3 +73,31 @@ class User(UserMixin,db.Model):
     
     def __repr__(self):
         return f'User {self.username}'
+
+
+class Admin(UserMixin,db.Model):
+    __tablename__ = 'admin'
+
+    id=db.Column(db.Integer, primary_key=True)
+    username=db.Column(db.String(255))
+    email=db.Column(db.String(),unique = True,index = True) 
+    password_hash=db.Column(db.String(255))
+    problem_id=db.Column(db.Integer,db.ForeignKey("problem.id"))
+    comment_id=db.Column(db.Integer,db.ForeignKey("comments.id"))
+
+    @property
+    def password(self):
+        raise AttributeError('You can not access  the password attribute')
+
+    @password.setter
+    def  password(self,password):
+        self.password_hash=generate_password_hash(password)
+
+    def verify_password(self,password):
+        return check_password_hash(self.password_hash,password)
+
+
+    def __repr__(self):
+        return f'User {self.username}'
+
+  
